@@ -37,14 +37,15 @@ Since 0 is in the range [-231, 231 - 1], the final result is 0.
     {
         static void Main(string[] args)
         {
-            int result = MyAtoi(" a -3302 as");
+            int result = MyAtoi(" - 91283472332");
             Console.WriteLine(result);
         }
 
         private static  int MyAtoi(string s) 
         {
-            int result = 0;
+            string result = "";
             bool isPos = true;
+            int intResult = 0;
             for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] == ' ' || s[i] == '+')
@@ -60,12 +61,38 @@ Since 0 is in the range [-231, 231 - 1], the final result is 0.
                 }
                 else 
                 {
-                    result = result * 10 + int.Parse( s[i].ToString()) ;
+                    result +=  s[i]   ;
                 }
             }
-            return isPos ? result : result * -1;
+            if (isPos  )
+            {
+                if (Int32.TryParse(result, out intResult))
+                {
+                    return intResult;
+                }
+                else
+                {
+                    return Int32.MaxValue;
+                }
+                
+
+            }
+            else
+            {
+
+                if (Int32.TryParse(result, out intResult))
+                {
+                    return intResult*-1;
+                }
+                else
+                {
+                    return Int32.MinValue;
+                }
+            }
+            
 
 
         }
     }
 }
+
