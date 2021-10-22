@@ -64,6 +64,8 @@ Since 0 is in the range [-231, 231 - 1], the final result is 0.
                     result +=  s[i]   ;
                 }
             }
+              if (result.Length == 0)
+                return 0;
             if (isPos  )
             {
                 if (Int32.TryParse(result, out intResult))
